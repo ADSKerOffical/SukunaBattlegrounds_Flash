@@ -1,0 +1,288 @@
+local function toolOneA()
+local tool = Instance.new("Tool")
+tool.Name = "Ultra Instinct"
+tool.RequiresHandle = false
+
+tool.Activated:Connect(function()
+local player = game.Players.LocalPlayer
+local parts = workspace:GetPartBoundsInRadius(player.Character:WaitForChild("HumanoidRootPart").Position, 70)
+    local foundEntity = false
+    for _, part in ipairs(parts) do
+        if (part:IsA("BasePart") or part:IsA("UnionOperation") or part:IsA("Model")) and not part.Anchored and part:IsDescendantOf(workspace) and not part:IsDescendantOf(player.Character) then
+            foundEntity = true
+            if part then
+                player.Character:SetPrimaryPartCFrame(part.CFrame)
+            end
+            break
+        end
+    end
+    if foundEntity then
+        -- Do something when an entity is found
+    else
+        -- Do something when no entity is found
+    end
+end)
+
+tool.Parent = game.Players.LocalPlayer.Backpack
+end
+
+local function toolTwoA()
+local tool = Instance.new("Tool")
+tool.Name = "Supersonic strike"
+tool.RequiresHandle = false
+
+tool.Activated:Connect(function()
+game:GetService("ReplicatedStorage")["Reworked Gojo Assets"].Remotes.HoraHora:FireServer()
+local numActions = 5
+
+local ohString1 = "Punch"
+local ohString2 = "Fire"
+local ohTable3 = {
+    ["mousepos"] = Vector3.new(112.32048034667969, 26.271419525146484, -57.01249694824219),
+    ["rootcf"] = CFrame.new(127.536491, 29.2714157, -56.1648369, -0.386267394, 0, 0.922386825, 0, 1, 0, -0.922386825, 0, -0.386267394)
+}
+
+local remoteEvent = game:GetService("ReplicatedStorage")["Serious Sneeze Assets"].SendServer
+
+local function performAction()
+    remoteEvent:InvokeServer(ohString1, ohString2, ohTable3)
+end
+
+for i = 1, numActions do
+    spawn(performAction)
+end
+end)
+
+tool.Parent = game.Players.LocalPlayer.Backpack
+end
+
+local function ToolTri()
+local TweenService = game:GetService("TweenService")
+local tool = Instance.new("Tool")
+tool.Name = "Ultra Jerk"
+tool.RequiresHandle = false
+local distance = 125
+local cooldown = 1 -- Кулдаун в секундах, чтобы избежать спама
+
+local isCooldown = false
+
+tool.Activated:Connect(function()
+game:GetService("ReplicatedStorage").NewTojiReworkAssets.Remotes.Vanish:FireServer()
+wait()
+local ohString1 = "DomainStart"
+game:GetService("ReplicatedStorage").Sukuna2.BeowulfRemote:FireServer(ohString1)
+wait()
+    if isCooldown then return end
+    isCooldown = true
+    
+    local character = tool.Parent
+    local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
+    if humanoidRootPart then
+        -- Вычисляем новую позицию
+        local newCFrame = humanoidRootPart.CFrame * CFrame.new(0, 0, -distance)
+        
+        -- Создаем твин
+        local tweenInfo = TweenInfo.new(
+            0.2, -- Длительность анимации в секундах
+            Enum.EasingStyle.Linear, -- Стиль изменения (линейный делает движение равномерным)
+            Enum.EasingDirection.Out, -- Направление изменения
+            0, -- Количество повторений (0 означает без повторений)
+            false, -- Необходимость обратного движения
+            0 -- Задержка перед началом анимации
+        )
+        local tween = TweenService:Create(humanoidRootPart, tweenInfo, {CFrame = newCFrame})
+        
+        tween:Play() -- Начинаем анимацию
+        tween.Completed:Wait() -- Ждем окончания анимаци
+    
+    local numActions = 5
+
+local ohString1 = "Punch"
+local ohString2 = "Fire"
+local ohTable3 = {
+    ["mousepos"] = Vector3.new(112.32048034667969, 26.271419525146484, -57.01249694824219),
+    ["rootcf"] = CFrame.new(127.536491, 29.2714157, -56.1648369, -0.386267394, 0, 0.922386825, 0, 1, 0, -0.922386825, 0, -0.386267394)
+}
+
+local remoteEvent = game:GetService("ReplicatedStorage")["Serious Sneeze Assets"].SendServer
+
+local function performAction()
+    remoteEvent:InvokeServer(ohString1, ohString2, ohTable3)
+end
+
+for i = 1, numActions do
+    spawn(performAction)
+end
+    
+    -- Устанавливаем кулдаун
+    wait(cooldown)
+    isCooldown = false
+    end
+end)
+
+tool.Parent = game.Players.LocalPlayer.Backpack
+end
+
+local function ToolFive()
+local tool = Instance.new("Tool")
+tool.Name = "Supersonic blows"
+tool.RequiresHandle = false
+
+tool.Activated:Connect(function()
+game:GetService("ReplicatedStorage").FullKJAssetsForUpdate["KJ Remotes"].Series:FireServer()
+for i = 1, 8 do
+        game:GetService("ReplicatedStorage").NewTojiReworkAssets.Remotes.Punches:FireServer()
+ end
+end)
+
+tool.Parent = game.Players.LocalPlayer.Backpack
+end
+
+local function ToolSix()
+local tool = Instance.new("Tool")
+tool.Name = "More Speed"
+tool.RequiresHandle = false
+
+local cooldown = false
+
+tool.Activated:Connect(function()
+    if cooldown then
+        return
+    end
+
+    cooldown = true
+
+    for i = 1, 3 do
+        game:GetService("ReplicatedStorage").FullKJAssetsForUpdate["KJ Remotes"].Series:FireServer()
+    end
+    getgenv().TpWalking = true
+    getgenv().Speed = 1.5
+
+    local speaker = game:GetService("Players").LocalPlayer
+    local chr = speaker.Character
+    local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
+    local hb = game:GetService("RunService").Heartbeat
+
+    while getgenv().TpWalking and chr and hum and hum.Parent do
+        local delta = hb:Wait()
+        if hum.MoveDirection.Magnitude > 0 then
+            chr:TranslateBy(hum.MoveDirection * tonumber(getgenv().Speed) * delta * 10)
+        else
+            chr:TranslateBy(hum.MoveDirection * delta * 10)
+        end
+    end
+
+    cooldown = false
+end)
+
+tool.Parent = game.Players.LocalPlayer.Backpack
+end
+
+local function ToolFour()
+local tool = Instance.new("Tool")
+tool.Name = "Light speed"
+tool.RequiresHandle = false
+
+tool.Activated:Connect(function()
+local invis_on = false
+    if chat then return end
+	    invis_on = not invis_on
+    	if invis_on then
+            local savedpos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+            wait()
+            game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-25.95, 84, 3537.55))
+            wait(.15)
+            local Seat = Instance.new('Seat', game.Workspace)
+            Seat.Anchored = false
+            Seat.CanCollide = false
+            Seat.Name = 'invischair'
+            Seat.Transparency = 1
+            Seat.Position = Vector3.new(-25.95, 84, 3537.55)
+            local Weld = Instance.new("Weld", Seat)
+            Weld.Part0 = Seat
+            Weld.Part1 = game.Players.LocalPlayer.Character:FindFirstChild("Torso") or game.Players.LocalPlayer.Character.UpperTorso
+            wait()
+            Seat.CFrame = savedpos
+wait()
+
+game.Lighting.Ambient = Color3.fromRGB(50, 50, 50)
+game.Lighting.ColorShift_Bottom = Color3.fromRGB(50, 50, 50)
+game.Lighting.ColorShift_Top = Color3.fromRGB(50, 50, 50)
+game.Lighting.FogColor = Color3.fromRGB(50, 50, 50)
+game.Lighting.FogEnd = 1000
+game.Lighting.FogStart = 0
+game.Lighting.GlobalShadows = true
+game.Lighting.OutdoorAmbient = Color3.fromRGB(50, 50, 50)
+game.Lighting.ShadowSoftness = 0.5
+
+game.Lighting.Brightness = 0.5
+
+game.Lighting.ClockTime = 12
+game.Lighting.GeographicLatitude = 41.7
+
+local function setDarkLighting()
+    game.Lighting.Ambient = Color3.fromRGB(50, 50, 50)
+    game.Lighting.ColorShift_Bottom = Color3.fromRGB(50, 50, 50)
+    game.Lighting.ColorShift_Top = Color3.fromRGB(50, 50, 50)
+    game.Lighting.FogColor = Color3.fromRGB(50, 50, 50)
+    game.Lighting.Brightness = 20
+end
+
+setDarkLighting()
+        wait(10)
+            workspace:FindFirstChild('invischair'):Remove()
+wait()
+local lighting = game:GetService("Lighting");
+    lighting.Ambient = Color3.fromRGB(70, 70, 70);
+    lighting.Brightness = 2.5;
+    lighting.FogEnd = math.huge;
+    lighting.FogColor = Color3.new(0,0,0);
+    lighting.TimeOfDay = 10;
+    for i, v in pairs(lighting:GetDescendants()) do
+        if v:IsA("BloomEffect") or v:IsA("BlurEffect") or v:IsA("ColorCorrectionEffect") or v:IsA("SunRaysEffect") or v:IsA("DepthOfFieldEffect") or v:IsA("SunRays") or v:IsA("Outlines") or v:IsA("GlobalShadows") then
+            v:Destroy()
+        end;
+    end;
+lighting.ClockTime = 12;
+lighting.OutdoorAmbient = Color3.fromRGB(70, 70, 70);
+    end
+end)
+
+tool.Parent = game.Players.LocalPlayer.Backpack
+end
+
+local function ToolSeven()
+local tool = Instance.new("Tool")
+tool.Name = "Finite Kick"
+tool.RequiresHandle = false
+
+tool.Activated:Connect(function()
+for i = 1, 8 do
+game:GetService("ReplicatedStorage").NewTojiReworkAssets.Remotes.KickSlam:FireServer()
+end
+    wait(0.2)
+for i = 1, 2 do
+game:GetService("ReplicatedStorage").FullKJAssetsForUpdate["KJ Remotes"].Series:FireServer()
+end
+end)
+
+tool.Parent = game.Players.LocalPlayer.Backpack
+end
+
+toolOneA()
+toolTwoA()
+ToolTri()
+ToolFour()
+ToolFive()
+ToolSix()
+ToolSeven()
+
+repeat wait()
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 70
+game.Players.LocalPlayer.Character.Humanoid.JumpHeight = 50
+local Humanoid = game.Players.LocalPlayer.Character.Humanoid
+local ActiveTracks = Humanoid:GetPlayingAnimationTracks()
+for _,v in pairs(ActiveTracks) do
+     v:AdjustSpeed(2.5)
+end
+until game.Players.LocalPlayer.Character.Humanoid.Health == 0
